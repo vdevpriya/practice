@@ -18,9 +18,9 @@ public class FlatDiscount extends Discount{
 		if(!(null==item || item.getPrice()==null || item.getPrice()==0D))
 		{			
 			Double discountedPrice = item.getPrice()<this.value?0D:item.getPrice()-this.value;
-			Double discountApplied = item.getPrice() - discountedPrice;
+			Double discountApplied = (item.getPrice() - discountedPrice)*item.getQuantity();
 			item.setTotalDiscountApplied(item.getTotalDiscountApplied()+discountApplied);
-			item.setTotlaPrice(discountedPrice*item.getQuantity());
+			//item.setTotlaPrice((item.getTotlaPrice().equals(0D)?(item.getPrice()*item.getQuantity()):item.getTotlaPrice())-discountApplied);
 		}
 		item.writeLock.writeLock().unlock();
 	}

@@ -17,8 +17,8 @@ public class FlatTax extends Tax {
 		item.writeLock.writeLock().lock();
 		if(!(null==item || item.getPrice()==null || item.getPrice()==0D))
 		{
-			item.setTotlaPrice((item.getPrice()+this.value)*item.getQuantity());
-			item.setTotalTaxApplied((item.getTotalTaxApplied()+this.value)*item.getQuantity());
+			//item.setTotlaPrice((item.getTotlaPrice().equals(0D))?(item.getPrice()+this.value)*item.getQuantity():item.getTotlaPrice()+(this.value*item.getQuantity()));
+			item.setTotalTaxApplied(item.getTotalTaxApplied()+(this.value*item.getQuantity()));
 		}
 		item.writeLock.writeLock().unlock();
 	}

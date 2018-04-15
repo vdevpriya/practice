@@ -21,8 +21,9 @@ public class PercentageDiscount extends Discount{
 			Double discountedPrice = price - (this.value*price)/100;
 			discountedPrice = discountedPrice<0?0D:discountedPrice;
 			Double discountApplied = item.getPrice() - discountedPrice;
+			discountApplied = discountApplied*item.getQuantity();
 			item.setTotalDiscountApplied(item.getTotalDiscountApplied()+discountApplied);
-			item.setTotlaPrice(discountedPrice*item.getQuantity());
+			//item.setTotlaPrice(item.getTotlaPrice().equals(0D)?(discountedPrice*item.getQuantity()):item.getTotlaPrice()-((discountApplied*item.getQuantity())));
 		}
 		item.writeLock.writeLock().unlock();
 	}

@@ -1,6 +1,7 @@
 package com.model;
 
 import com.constants.TaxType;
+import com.constants.TaxUtility;
 
 public class PercentageTax extends Tax {
 
@@ -19,10 +20,13 @@ public class PercentageTax extends Tax {
 		{
 			Double price = item.getPrice();
 			Double taxApplied = (this.value*price)/100;
-			taxApplied=(double) (Math.ceil(taxApplied*20)/20);
-			Double taxedPrice = price + taxApplied;
-			item.setTotlaPrice(taxedPrice*item.getQuantity());
-			item.setTotalTaxApplied(item.getTotalTaxApplied()+(taxApplied*item.getQuantity()));
+			taxApplied = taxApplied*item.getQuantity();
+			taxApplied=TaxUtility.roundOff(taxApplied);
+			//Double taxedPrice = price + taxApplied;
+			//item.setTotlaPrice(taxedPrice*item.getQuantity());
+			//item.setTotlaPrice
+			//((item.getTotlaPrice().equals(0D)?(item.getPrice()*item.getQuantity()):item.getTotlaPrice())+(taxApplied*item.getQuantity()));
+			item.setTotalTaxApplied(item.getTotalTaxApplied()+taxApplied);
 		}
 		item.writeLock.writeLock().unlock();
 	}

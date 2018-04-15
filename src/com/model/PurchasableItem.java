@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.constants.Category;
+import com.constants.TaxUtility;
 
 public class PurchasableItem extends Item {
 	
@@ -39,7 +40,11 @@ public class PurchasableItem extends Item {
 	}
 
 	public Double getTotlaPrice() {
-		return totlaPrice;
+		
+		Double totalPrice = (this.getPrice()*this.getQuantity())+this.getTotalTaxApplied()-this.getTotalDiscountApplied();
+		totalPrice = TaxUtility.roundOff(totalPrice);
+		setTotlaPrice(totalPrice);
+		return totalPrice;
 	}
 
 	public void setTotlaPrice(Double totlaPrice) {
