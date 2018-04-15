@@ -22,7 +22,7 @@ public class BillingService {
 			item.writeLock.writeLock().lock();
 			if(null==toApplyTaxes || toApplyTaxes.isEmpty())
 			{
-				item.setTotlaPrice(item.getPrice()*item.getQuantity());
+				item.setTotalPrice(item.getPrice()*item.getQuantity());
 				continue;
 			}
 			PriceCalUtil.applyTax(toApplyTaxes, item);

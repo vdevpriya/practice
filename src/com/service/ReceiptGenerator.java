@@ -19,7 +19,7 @@ public class ReceiptGenerator {
 		{
 			try
 			{
-				totalAmount+= item.getTotlaPrice();
+				totalAmount+= item.getTotalPrice();
 				totalTaxes+= item.getTotalTaxApplied();
 			}
 			catch(ClassCastException e)
