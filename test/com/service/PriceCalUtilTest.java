@@ -39,8 +39,8 @@ public class PriceCalUtilTest {
 		try {
 			PriceCalUtil.applyTax(pd, i2);
 			PriceCalUtil.applyTax(set, i1);
-			Assert.assertTrue(i2.getTotlaPrice().equals(82D));
-			Assert.assertTrue(i1.getTotlaPrice().equals(6.15D));
+			Assert.assertTrue(i2.getTotalPrice().equals(82D));
+			Assert.assertTrue(i1.getTotalPrice().equals(6.15D));
 			Assert.assertTrue(i2.getTotalDiscountApplied().equals(18D));
 			Assert.assertTrue(i1.getTotalTaxApplied().equals(6.15D));
 		} catch (InvoiceException e) {
