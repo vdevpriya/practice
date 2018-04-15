@@ -1,6 +1,7 @@
 package com.model;
 
 import com.constants.TaxType;
+import com.constants.TaxUtility;
 
 public class FlatTax extends Tax {
 	
@@ -17,8 +18,10 @@ public class FlatTax extends Tax {
 		item.writeLock.writeLock().lock();
 		if(!(null==item || item.getPrice()==null || item.getPrice()==0D))
 		{
-			//item.setTotlaPrice((item.getTotlaPrice().equals(0D))?(item.getPrice()+this.value)*item.getQuantity():item.getTotlaPrice()+(this.value*item.getQuantity()));
-			item.setTotalTaxApplied(item.getTotalTaxApplied()+(this.value*item.getQuantity()));
+			//item.setTotlaPrice((item.getTotalPrice().equals(0D))?(item.getPrice()+this.value)*item.getQuantity():item.getTotalPrice()+(this.value*item.getQuantity()));
+			Double totalTaxApplied = item.getTotalTaxApplied()+(this.value*item.getQuantity());
+			item.setTotalTaxApplied(totalTaxApplied);
+			item.setTotalPrice(TaxUtility.roundOff(item.getTotalPrice()+totalTaxApplied));
 		}
 		item.writeLock.writeLock().unlock();
 	}

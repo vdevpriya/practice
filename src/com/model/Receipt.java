@@ -35,7 +35,7 @@ public class Receipt {
 			r.append(" ");
 			r.append(pi.getName());
 			r.append(" :");
-			r.append(pi.getTotlaPrice());
+			r.append(pi.getTotalPrice());
 			r.append("\n");
 		}
 		r.append("Total Taxes:"+this.totalTaxApplied+"\n");

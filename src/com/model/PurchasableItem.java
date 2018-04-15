@@ -11,7 +11,7 @@ public class PurchasableItem extends Item {
 	public ReentrantReadWriteLock writeLock = new ReentrantReadWriteLock();
 	protected Double quantity = new Double(1);
 	protected Date dateOfPurchase;
-	protected Double totlaPrice=0D;
+	protected Double totalPrice=0D;
 	protected Double totalTaxApplied=0D;
 	protected Double totalDiscountApplied=0D;
 	
@@ -20,6 +20,7 @@ public class PurchasableItem extends Item {
 		// TODO Auto-generated constructor stub
 		this.quantity = qty;
 		this.dateOfPurchase = new Date();
+		this.totalPrice = this.getPrice()*this.quantity;
 		
 	}
 
@@ -39,16 +40,12 @@ public class PurchasableItem extends Item {
 		this.dateOfPurchase = dateOfPurchase;
 	}
 
-	public Double getTotlaPrice() {
-		
-		Double totalPrice = (this.getPrice()*this.getQuantity())+this.getTotalTaxApplied()-this.getTotalDiscountApplied();
-		totalPrice = TaxUtility.roundOff(totalPrice);
-		setTotlaPrice(totalPrice);
+	public Double getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotlaPrice(Double totlaPrice) {
-		this.totlaPrice = totlaPrice;
+	public void setTotalPrice(Double totlaPrice) {
+		this.totalPrice = totlaPrice;
 	}
 
 	public Double getTotalTaxApplied() {
@@ -74,6 +71,6 @@ public class PurchasableItem extends Item {
 		this.quantity=0D;
 		this.totalDiscountApplied=0D;
 		this.totalTaxApplied=0D;
-		this.totlaPrice=0D;
+		this.totalPrice=0D;
 	}
 }

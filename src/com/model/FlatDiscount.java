@@ -1,6 +1,7 @@
 package com.model;
 
 import com.constants.DiscountType;
+import com.constants.TaxUtility;
 
 public class FlatDiscount extends Discount{
 
@@ -18,9 +19,10 @@ public class FlatDiscount extends Discount{
 		if(!(null==item || item.getPrice()==null || item.getPrice()==0D))
 		{			
 			Double discountedPrice = item.getPrice()<this.value?0D:item.getPrice()-this.value;
-			Double discountApplied = (item.getPrice() - discountedPrice)*item.getQuantity();
-			item.setTotalDiscountApplied(item.getTotalDiscountApplied()+discountApplied);
-			//item.setTotlaPrice((item.getTotlaPrice().equals(0D)?(item.getPrice()*item.getQuantity()):item.getTotlaPrice())-discountApplied);
+			Double totaldiscountApplied = (item.getPrice() - discountedPrice)*item.getQuantity();
+			item.setTotalDiscountApplied(item.getTotalDiscountApplied()+totaldiscountApplied);
+			Double totalPrice = (item.getTotalPrice()-totaldiscountApplied<=0?0D:item.getTotalPrice()-totaldiscountApplied);
+			item.setTotalPrice(TaxUtility.roundOff(totalPrice));
 		}
 		item.writeLock.writeLock().unlock();
 	}

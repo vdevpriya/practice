@@ -20,13 +20,10 @@ public class PercentageTax extends Tax {
 		{
 			Double price = item.getPrice();
 			Double taxApplied = (this.value*price)/100;
-			taxApplied = taxApplied*item.getQuantity();
-			taxApplied=TaxUtility.roundOff(taxApplied);
-			//Double taxedPrice = price + taxApplied;
-			//item.setTotlaPrice(taxedPrice*item.getQuantity());
-			//item.setTotlaPrice
-			//((item.getTotlaPrice().equals(0D)?(item.getPrice()*item.getQuantity()):item.getTotlaPrice())+(taxApplied*item.getQuantity()));
-			item.setTotalTaxApplied(item.getTotalTaxApplied()+taxApplied);
+			Double totaltaxApplied = taxApplied*item.getQuantity();
+			totaltaxApplied=TaxUtility.roundOff(totaltaxApplied);
+			item.setTotalTaxApplied(item.getTotalTaxApplied()+totaltaxApplied);
+			item.setTotalPrice(TaxUtility.roundOff(item.getTotalPrice()+totaltaxApplied));
 		}
 		item.writeLock.writeLock().unlock();
 	}
