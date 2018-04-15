@@ -28,8 +28,8 @@ public class FlatDiscountTest {
 		FlatDiscount fd = new FlatDiscount("FlatDiscountTest", 3D);
 		fd.applyDiscount(i1);
 		fd.apply(i2);
-		Assert.assertTrue(i1.getTotlaPrice().equals(34D));
-		Assert.assertTrue(i2.getTotlaPrice().equals(17D));
+		Assert.assertTrue(i1.getTotalPrice().equals(34D));
+		Assert.assertTrue(i2.getTotalPrice().equals(17D));
 	}
 
 }

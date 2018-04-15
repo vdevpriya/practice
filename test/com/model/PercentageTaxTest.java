@@ -25,8 +25,8 @@ public class PercentageTaxTest {
 		PercentageTax fd = new PercentageTax("FlatDiscountTest", 3D);
 		fd.applyTax(i1);
 		fd.apply(i2);
-		Assert.assertTrue(i1.getTotlaPrice().equals(41.2D));
-		Assert.assertTrue(i2.getTotlaPrice().equals(20.6D));
+		Assert.assertTrue(i1.getTotalPrice().equals(41.2D));
+		Assert.assertTrue(i2.getTotalPrice().equals(20.6D));
 	}
 
 }

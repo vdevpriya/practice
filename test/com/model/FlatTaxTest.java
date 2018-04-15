@@ -25,8 +25,8 @@ public class FlatTaxTest {
 		FlatTax fd = new FlatTax("FlatDiscountTest", 3D);
 		fd.applyTax(i1);
 		fd.apply(i2);
-		Assert.assertTrue(i1.getTotlaPrice().equals(46D));
-		Assert.assertTrue(i2.getTotlaPrice().equals(23D));
+		Assert.assertTrue(i1.getTotalPrice().equals(46D));
+		Assert.assertTrue(i2.getTotalPrice().equals(23D));
 	}
 
 }
