@@ -11,7 +11,9 @@ import com.model.TaxingEntity;
 
 public final class TaxRules {
 	public static ReentrantReadWriteLock writeLock = new ReentrantReadWriteLock();
+	//taxMap contains taxes specifically applied to a category
 	private static final Map<Category,Set<TaxingEntity>> taxMap = new HashMap<Category, Set<TaxingEntity>>();
+	//taxExemptedMap contains taxes specifically exempted for a category
 	private static final Map<Category,Set<TaxingEntity>> taxExemptedMap = new HashMap<Category, Set<TaxingEntity>>();
 	
 	public synchronized static void addRules(Map<Category,Set<TaxingEntity>> map,Map<Category,Set<TaxingEntity>> exempted)
