@@ -57,7 +57,7 @@ public class BillingServiceTest {
 			e.printStackTrace();
 		}		
 		Assert.assertTrue(i1.getTotlaPrice()!=0D);
-		Assert.assertTrue(i1.getTotlaPrice()==20D);
+		Assert.assertTrue(i1.getTotlaPrice()==40D);
 		Assert.assertTrue(i2.getTotlaPrice()==23.5D);
 	}
 	
