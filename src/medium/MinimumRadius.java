@@ -1,12 +1,12 @@
-package datastructures;
+package medium;
 
 import java.util.Arrays;
 
-public class Solution2 {
+public class MinimumRadius {
 	public static void main(String[] args) {
-		Solution2 test = new Solution2();
-		int[] houses = {1,2,3};
-		int[] heaters = {2};
+		MinimumRadius test = new MinimumRadius();
+		int[] houses = {2,3,7,8,10,12};
+		int[] heaters = {3,4,10};
 		System.out.println(test.findRadius(houses, heaters));
 	}
 	
@@ -16,12 +16,13 @@ public class Solution2 {
 		 int maxHeaterHouseDistance = -1;
 		 for (int houseLoc : houses) {
 			int nearestHeater = findNearestHeater(houseLoc, heaters);
-			if(nearestHeater>maxHeaterHouseDistance) {
-				maxHeaterHouseDistance = nearestHeater;
+			if(Math.abs(nearestHeater-houseLoc)>maxHeaterHouseDistance) {
+				maxHeaterHouseDistance = Math.abs(nearestHeater-houseLoc);
 			}
 		}
 		 return maxHeaterHouseDistance;
 	 } 
+	
 	 int findNearestHeater(int houseLoc,int[] heaters) {
 		 int distanceToHeater = 1000000000;
 		 int heaterLoc = -1;

@@ -516,6 +516,7 @@ public class Solution {
         	}
      return range;
     }
+	
 	public int bsearch(int start,int end,int target,int[] nums) {
 		if(start<=end && target>=nums[start] && target<=nums[end]) {
 			int mid = (start+end)/2;
@@ -543,6 +544,7 @@ public class Solution {
 		}
 		 return maxHeaterHouseDistance;
 	 } 
+	 
 	 int findNearestHeater(int houseLoc,int[] heaters) {
 		 int distanceToHeater = 1000000000;
 		 int heaterLoc = -1;
