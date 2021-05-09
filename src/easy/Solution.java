@@ -15,6 +15,7 @@ public class Solution {
 		//System.out.println(test.longestCommonPrefix(new String[]{"Hello","helloWrold"}));
 		//System.out.println(test.isValid("()[]{}"));
 		//System.out.println(test.removeDuplicates(new int[]{1,1,2,2,3,3,4}));
+		System.out.println(test.removeElement(new int[]{},3));
 	}
 	public boolean isPalindrome(int x) {
         String[] chars = String.valueOf(x).split("");
@@ -155,7 +156,7 @@ public class Solution {
 
 	public int removeDuplicates(int[] nums) {
 		if(nums.length==1)
-			return 0;
+			return 1;
 		
         int x=1,y=0;
         while(x<nums.length) {
@@ -171,6 +172,42 @@ public class Solution {
         //Arrays.stream(nums).forEach(System.out::println);
         
         return y+1;
+    }
+
+	public int removeElement(int[] nums, int val) {
+        int start = 0;
+        int end = nums.length-1;
+        int count = 0;
+        if(nums.length==0)
+        		return 0;
+        if(start==end) {
+        		if(nums[start]==val)
+        			return 0;
+        		else
+                    return nums.length;
+        }
+        while(end>start) {
+        		while(nums[start]!=val && end>start) {
+        			start++;
+        		}
+        		while(nums[end]==val && end>start) {
+        			end--;
+        		}
+        		if(end>start && nums[start]==val && nums[end]!=val) {
+        			nums[start] = nums[end];
+        			nums[end] = val;
+        			count++;     			
+        		}
+        }
+        //Arrays.stream(nums).forEach(System.out::println);
+        //System.out.println(start+","+end+","+nums[end]);
+        if(start==end && nums[end]==val) {
+        		return end;
+        }
+        if(start==end && nums[end]!=val) {
+        		return end+1;
+        }
+        return -1;
     }
 }
 
