@@ -1,6 +1,5 @@
 package easy;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -15,7 +14,12 @@ public class Solution {
 		//System.out.println(test.longestCommonPrefix(new String[]{"Hello","helloWrold"}));
 		//System.out.println(test.isValid("()[]{}"));
 		//System.out.println(test.removeDuplicates(new int[]{1,1,2,2,3,3,4}));
-		System.out.println(test.removeElement(new int[]{},3));
+		//System.out.println(test.removeElement(new int[]{},3));
+		//System.out.println(test.strStr("ll", "lll"));
+		//int[] nums = {1,3,4,6};
+		//System.out.println(test.searchInsert(nums, 0));
+		int [] nums = {2,3,-6,1,5};
+		System.out.println(test.maxSubArray2(nums));
 	}
 	public boolean isPalindrome(int x) {
         String[] chars = String.valueOf(x).split("");
@@ -209,21 +213,118 @@ public class Solution {
         }
         return -1;
     }
-}
 
-class ListNode {
-	int val;
-	ListNode next;
+	public int strStr(String haystack, String needle) {
+		if(haystack==null || needle==null)
+			return 0;
+		if(needle.length()==0)
+			return 0;
+		if(haystack.length()<needle.length())
+			return -1;
+		
+        char[] hayStackArr = haystack.toCharArray();
+        char[] needleArr = needle.toCharArray();
+        int hIndex = 0;
+        int nIndex = 0;
+        while(hIndex<hayStackArr.length && nIndex<needleArr.length) {
+        		int j = hIndex;
+        		while(j<hayStackArr.length && nIndex<needleArr.length &&  hayStackArr[j]==needleArr[nIndex]) {
+        			j++;
+        			nIndex++;
+        		}
+        		if(nIndex>=needleArr.length)
+        			return hIndex;
+        		if(j>=hayStackArr.length && nIndex<needleArr.length)
+        			return -1;
+        		nIndex=0;
+        		j=hIndex+1;
+        		while(j<hayStackArr.length && hayStackArr[j]!=needleArr[nIndex]) {
+        			j++;
+        		}
+        		hIndex=j;
+        }
+        return -1;
+    }
 
-	ListNode() {
+	public int searchInsert(int[] nums, int target) {
+        if(target<nums[0])
+        		return 0;
+        if(target>nums[nums.length-1])
+        		return nums.length;
+        return binarySearch(0, nums.length-1, nums, target);
+    }
+	
+	int binarySearch(int start,int end,int[] nums,int target) {
+		if(start==end) {
+			if(nums[start]!=target)
+				return nums[start]>target ? start: -1;
+			else
+				return start;
+		}
+		int mid = (start+end)/2;
+		if(target<=nums[mid]) {
+			return binarySearch(start, mid, nums, target);
+		} else {
+			return binarySearch(mid+1, end, nums, target);
+		}
 	}
 
-	ListNode(int val) {
-		this.val = val;
-	}
+	public int maxSubArray(int[] nums) {
+		if(nums.length==1)
+			return nums[0];
+		int currSum = nums[0];
+		int maxSum = currSum;
+		int next=1;
+		while(next<nums.length) {
+			if(nums[next]>=0) {
+				if(currSum<=0) {
+					currSum = nums[next];
+				} else {
+					currSum+=nums[next];
+				}
+			} else {
+				if(currSum>0) {
+					if(currSum+nums[next]<=0) {
+						int k = next+1;
+						while(k<nums.length && nums[k]<0) {
+							k++;
+						}
+						if(k>=nums.length)
+							break;
+						currSum = nums[k];
+						next = k;
+					} else {
+						currSum+=nums[next];
+					}
+				} else {
+					if(currSum>nums[next]) {
+						int k = next+1;
+						while(k<nums.length && nums[k]<currSum) {
+							k++;
+						}
+						if(k>=nums.length)
+							break;
+						currSum = nums[k];
+						next = k;
+					} else {
+						currSum = nums[next];
+					}
+				}
+			}
+			maxSum = currSum>maxSum?currSum:maxSum;
+			next++;
+		}
+		return maxSum;
+    }
 
-	ListNode(int val, ListNode next) {
-		this.val = val;
-		this.next = next;
-	}
+	public int maxSubArray2(int[] nums) {
+        int ans = nums[0],curr = nums[0];
+        if(nums.length == 1) return nums[0];
+        for(int i=1;i<nums.length;i++)
+        {
+            curr = Math.max(nums[i],curr+nums[i]);
+            ans = Math.max(ans,curr);
+        }
+        return ans;
+    }
 }

@@ -49,6 +49,6 @@ public class MinPositive {
 	public static void main(String[] args) {
 		List<Object> l1 = new ArrayList<>();
 		List<String> l2 = new ArrayList<>();
-		l1 = l2;
+		//l1 = l2;
 	}
 }

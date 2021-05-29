@@ -10,7 +10,7 @@ public class shuffleArray {
 		// TODO Auto-generated method stub
 		shuffleArray s = new shuffleArray();
 		System.out.println(s.add(10, 'a'));
-		s.add(new ArrayList<String>());
+		//s.add(new ArrayList<String>());
 	}
 	public int add(int i,int j) {
 		return 0;

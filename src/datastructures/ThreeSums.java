@@ -12,10 +12,11 @@ public class ThreeSums {
 		// TODO Auto-generated method stub
 
 	}
-	public static Map<Character, Integer> sortMapByValue(Map<Character, Integer> map){
+	public static Map sortMapByValue(Map<Character, Integer> map){
 	     
-	    return map.entrySet().stream().sorted(
-	      (a,b)->a.getValue()-b.getValue()).collect(Collectors.toMap( ));
+//	    return map.entrySet().stream().sorted(
+//	      (a,b)->a.getValue()-b.getValue()).collect(Collectors.toMap());
+		return null;
 	  }
 	 public List<List<Integer>> threeSum(int[] nums) {
 		 List<List<Integer>> ll = new LinkedList<>();

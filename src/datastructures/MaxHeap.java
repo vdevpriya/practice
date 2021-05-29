@@ -3,13 +3,12 @@ package datastructures;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.stream.Stream;
-
-import org.apache.commons.collections4.map.HashedMap;
 
 public class MaxHeap {
 
@@ -21,7 +20,7 @@ public class MaxHeap {
 	public int[] topKCandidates(String fileName,int k) throws IOException {
 		Stream<String> s = Files.lines(Paths.get(fileName));
 		Set<Integer> voters = new HashSet<>();
-		Map<Integer,Set<Integer>> candidateIdVoteCount = new HashedMap<>();
+		Map<Integer,Set<Integer>> candidateIdVoteCount = new HashMap();
 		PriorityQueue<VoteEntry> pq =  new PriorityQueue<VoteEntry>((a,b) -> {
 			return candidateIdVoteCount.getOrDefault(a.getCandidateId(),new HashSet()).size() - candidateIdVoteCount.getOrDefault(b.getCandidateId(),new HashSet()).size();
 		});

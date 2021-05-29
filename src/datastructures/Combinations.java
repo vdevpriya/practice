@@ -1,5 +1,7 @@
 package datastructures;
 
+import java.util.List;
+
 public class Combinations {
 
 	public static void main(String[] args) {
@@ -8,7 +10,7 @@ public class Combinations {
 	}
 	
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        
+        return null;
     }
 
 }
